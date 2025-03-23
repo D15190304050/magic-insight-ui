@@ -2,7 +2,7 @@ const AuthKeys=
 {
     Authentication: "Authentication",
     Authorization: "Authorization",
-    SsoCookieName: "stella_login",
+    SsoCookieName: "magic_login",
     Token: "token",
     RedirectUrl: "redirect_url",
     LoginUrl: "/login",

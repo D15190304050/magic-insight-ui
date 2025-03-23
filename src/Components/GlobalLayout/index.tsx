@@ -37,14 +37,6 @@ const GlobalLayout = ({children}) => {
             label: "Video uploading",
         },
         {
-            key: "3",
-            label: "Playlist",
-        },
-        {
-            key: "4",
-            label: "Followings and followers",
-        },
-        {
             key: "10",
             label: "Log out",
         }
@@ -56,12 +48,6 @@ const GlobalLayout = ({children}) => {
         {
             case "2":
                 navigate(RoutePaths.VideoManagement);
-                break;
-            case "3":
-                navigate(RoutePaths.Playlist);
-                break;
-            case "4":
-                navigate(RoutePaths.Follow)
                 break;
             case "10":
                 logout(dispatch);
@@ -83,7 +69,7 @@ const GlobalLayout = ({children}) => {
             >
                 <Row>
                     <Col>
-                        <a href={"/"}>Stella Search</a>
+                        <a href={"/"}>Magic Insight</a>
                     </Col>
                     <Col span={18} style={{justifyContent: "center"}}>
                         <Search placeholder="input search text" onSearch={onSearch} enterButton style={{verticalAlign: "middle", width: "60%"}}/>
@@ -117,7 +103,7 @@ const GlobalLayout = ({children}) => {
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
-                Stella search ©{new Date().getFullYear()} Powered by Dino Stark
+                Magic Insight ©{new Date().getFullYear()} Powered by Forever-Peng
             </Footer>
         </Layout>
     );

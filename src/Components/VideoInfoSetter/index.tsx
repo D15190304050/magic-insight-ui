@@ -11,7 +11,6 @@ import {
     NewVideoUploadingTaskRequest,
     SetVideoInfoRequest
 } from "../../dtos/VideoPlayInfo.ts";
-import {VideoUploadingOption} from "../../dtos/VideoUploadingOptions.ts";
 import {useNavigate} from "react-router-dom";
 import {NavigateFunction} from "react-router/dist/lib/hooks";
 import RoutePaths from "../../constants/RoutePaths.ts";
@@ -89,7 +88,6 @@ const VideoInfoSetter = ({sourceVideoId}) =>
 {
     const [loading, setLoading] = useState<boolean>(true);
     const [videoCoverUrl, setVideoCoverUrl] = useState<string | null>(null);
-    const [videoUploadingOption, setVideoUploadingOption] = useState<VideoUploadingOption | null>(null);
     const [videoId, setVideoId] = useState<number>(0);
     const [enableUploading, setEnableUploading] = useState<boolean>(true);
 
@@ -262,11 +260,6 @@ const VideoInfoSetter = ({sourceVideoId}) =>
     {
         (async () =>
         {
-            // Get video uploading options.
-            const response = await axiosWithInterceptor.get("/api/video/uploading-options");
-            const videoUploadingOption = response.data.data as VideoUploadingOption;
-            setVideoUploadingOption(videoUploadingOption);
-
             if (isNullOrUndefined(sourceVideoId))
                 setEnableUploading(true);
             else
@@ -355,63 +348,6 @@ const VideoInfoSetter = ({sourceVideoId}) =>
                         ]}
                     >
                         <Input allowClear/>
-                    </Form.Item>
-
-                    <Form.Item
-                        name="videoCreationType"
-                        label="Video creation type"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input the type of your video.',
-                            },
-                        ]}
-                    >
-                        <Select options={videoUploadingOption?.creationTypeOptions.map(option =>
-                            ({
-                                label: option.title,
-                                value: option.value
-                            })
-                        )}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        name="section"
-                        label="Section"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input the section of your video.',
-                            },
-                        ]}
-                    >
-                        <Select options={videoUploadingOption?.videoSectionOptions.map(option =>
-                            ({
-                                label: option.title,
-                                value: option.value
-                            })
-                        )}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        name="labels"
-                        label="Labels"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input the labels of your video.',
-                            },
-                        ]}
-                    >
-                        <Select
-                            mode="multiple"
-                            maxCount={5}
-                            options={videoUploadingOption?.videoLabelOptions.map(option =>
-                                ({
-                                    label: option.title,
-                                    value: option.value
-                                })
-                            )}/>
                     </Form.Item>
 
                     <Form.Item

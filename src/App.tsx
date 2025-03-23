@@ -21,8 +21,6 @@ function App()
                 <Route path={RoutePaths.VideoUploading} element={<VideoUploading/>}/>
                 <Route path={RoutePaths.VideoUpdate} element={<VideoUpdate/>}/>
                 <Route path={RoutePaths.VideoPlayPage} element={<VideoPlayPage/>}/>
-                <Route path={RoutePaths.Playlist} element={<PlaylistPage/>}/>
-                <Route path={RoutePaths.Follow} element={<FollowingAndFollowerPage/>}/>
             </Routes>
         </GlobalLayout>
     );

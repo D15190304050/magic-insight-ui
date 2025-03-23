@@ -176,7 +176,7 @@ const Registration = () => {
                 <div className="wrap-container-registration">
                     <div className="registration-wrap">
                         <Card
-                            title="Stella search"
+                            title="Magic insight"
                             bordered={false}
                             style={{
                                 width: 500, // Card width: 500 px.
