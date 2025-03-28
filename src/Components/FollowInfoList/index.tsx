@@ -133,6 +133,14 @@ const FollowInfoList = ({defaultPageSize, followType}:
 export default FollowInfoList;
 
 /*
+    注意点：
+    {...user, followState: nextFollowState}讲解：
+    创建了一个新的对象user（只改变了followState）
+    ...user - 将原用户对象的所有属性展开
+    followState: nextFollowState - 只覆盖 followState 属性
+    原因：在React中，状态(State)是不可变的，我们不能直接修改原状态，而是必须创建新状态
+
+
     这个组件的主要功能是：
     1、显示用户的关注者/粉丝列表
     2、支持分页浏览
