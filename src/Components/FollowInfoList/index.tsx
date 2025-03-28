@@ -131,3 +131,17 @@ const FollowInfoList = ({defaultPageSize, followType}:
 }
 
 export default FollowInfoList;
+
+/*
+    这个组件的主要功能是：
+    1、显示用户的关注者/粉丝列表
+    2、支持分页浏览
+    3、可以关注/取消关注其他用户
+    4、提供私信按钮(功能未实现)
+
+    组件的工作流程：
+    1、根据传入的 followType 决定显示哪种列表
+    2、首次加载和类型变化时获取第一页数据
+    3、用户切换页码时获取对应页的数据
+    4、用户可以点击按钮关注/取消关注其他用户
+ */
