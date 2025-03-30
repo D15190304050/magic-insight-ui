@@ -42,6 +42,21 @@ const FollowingAndFollowerPage = () =>
         );
     }
 
+    /*
+    具体解释：使用了参数解构的语法
+    {key}：直接从参数对象中提取 key 属性
+    : { key: string }：这是TypeScript的类型注解，说明参数是一个对象，且该对象必须有 key 属性，类型为 string
+
+    相当于传统的
+    const changeFollowType = (args) => {
+    const key = args.key;
+    setCurrentFollowMenuKey(key);
+}
+
+    获取被点击菜单项的标识(key)，并更新当前选中的菜单状态
+    这种参数解构的写法是React开发中的常见模式，特别适合处理只关心部分数据的事件回调。
+     */
+
     const changeFollowType = ({key}: { key: string }) =>
     {
         setCurrentFollowMenuKey(key);
