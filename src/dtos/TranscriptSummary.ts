@@ -5,7 +5,7 @@ interface ContentStructure {
 }
 
 interface TranscriptSummary {
-    canSummary: boolean;
+    canSummarize: boolean;
     summary: string;
     contentStructures: ContentStructure[];
     labels: string[];

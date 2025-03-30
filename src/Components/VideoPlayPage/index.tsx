@@ -160,7 +160,7 @@ const VideoPlayPage = () =>
 
     const setSummaryContent = () =>
     {
-        if (summary === null)
+        if (summary === null || (!summary.canSummarize))
             return (<div>There is no summary for this video.</div>);
         else
         {
