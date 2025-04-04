@@ -6,8 +6,8 @@ const chris = {
 }
 
 const initialState = {
-    userInfo: null
-    // userInfo: chris
+    // userInfo: null
+    userInfo: chris
 };
 
 const authReducer = (state = initialState, action) => {
