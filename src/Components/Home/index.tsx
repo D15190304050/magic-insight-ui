@@ -17,7 +17,7 @@ const Home: React.FC = () => {
                 </div>
             <Row gutter={16}>
                 <Col span={12}>
-                    <Card style={{  borderRadius: '8px', height: '250px',margin: '16px'}}>
+                    <Card style={{  borderRadius: '8px', height: '250px'}}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',marginTop: '50px' }}>
                             <div>
                                 <span style={{ fontSize: '32px', fontWeight: 'bold' }}>43</span> 分钟
