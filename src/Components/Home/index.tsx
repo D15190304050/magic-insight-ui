@@ -2,6 +2,7 @@ import React from 'react';
 import {Avatar, Card, Col, Row} from 'antd';
 import Meta from "antd/es/card/Meta";
 import DemoMindMap from "../DemoMindMap";
+import DemoCard from "../DemoCard";
 
 
 const Home: React.FC = () => {
@@ -54,7 +55,7 @@ const Home: React.FC = () => {
                 <button style={{ backgroundColor: '#37a000', color: '#fff', padding: '8px 16px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>查看更多</button>
             </div>
             </Card>
-            <DemoMindMap/>
+
         </div>
     );
 };
