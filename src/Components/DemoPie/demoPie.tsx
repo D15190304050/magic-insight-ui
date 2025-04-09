@@ -1,13 +1,43 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Pie } from '@ant-design/plots';
+import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
+import {useLocation, useNavigate} from "react-router-dom";
+import RouteQueryParams from "../../constants/RouteQueryParams.ts";
+import {message} from "antd";
+import axiosWithInterceptor from "../../axios/axios.tsx";
+import qs from "qs";
 
 const DemoPie: React.FC = () => {
+    const [transcriptAnalysis, setTranscriptAnalysis] = useState<TranscriptAnalysis>();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const queryParams: URLSearchParams = new URLSearchParams(location.search);
+    const videoIdString: string | null = queryParams.get(RouteQueryParams.VideoId);
+    const videoId: number = parseInt(videoIdString as string);
+    if (isNaN(videoId)) {
+        message.error("Invalid video ID.")
+            .then(x => navigate("/"));
+    }
+
+    useEffect(() => {
+        (async () => {
+            const videoAnalysisResponse = await axiosWithInterceptor.get("/api/video/analysis",
+                {
+                    params: {videoId: videoId},
+                    paramsSerializer: params => qs.stringify(params)
+                });
+
+            const transcriptAnalysis: TranscriptAnalysis = videoAnalysisResponse.data.data;
+            setTranscriptAnalysis(transcriptAnalysis);
+        })();
+    }, [videoId]);
+
     const config = {
         data: [
-            { type: '是何问题', value: 27 },
-            { type: '为何问题', value: 25 },
-            { type: '如何问题', value: 18 },
-            { type: '若何问题', value: 18 },
+            { type: '是何问题', value: transcriptAnalysis?.interactionTypeCountMap?.questionCounts?.what },
+            { type: '为何问题', value: transcriptAnalysis?.interactionTypeCountMap?.questionCounts?.why },
+            { type: '如何问题', value: transcriptAnalysis?.interactionTypeCountMap?.questionCounts?.how },
+            { type: '若何问题', value: transcriptAnalysis?.interactionTypeCountMap?.questionCounts?.whatIf },
         ],
         angleField: 'value',
         colorField: 'type',

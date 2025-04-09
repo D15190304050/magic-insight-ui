@@ -33,16 +33,15 @@ const DemoColumn = () => {
         })();
     }, [videoId]);
 
+    const chartData =  [
+        { type: '激励', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.motivate || 0 },
+        { type: '否定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.negative || 0 },
+        { type: '重复', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.repeat || 0 },
+        { type: '针对肯定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.targetedAffirmative || 0 },
+        { type: '简单肯定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.simpleAffirmative || 0 },
+    ];
 
-    const chartData = transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts ? [
-        { type: '激励', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.motivate || 0 },
-        { type: '否定', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.negative || 0 },
-        { type: '重复', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.repeat || 0 },
-        { type: '针对肯定', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.targetedAffirmative || 0 },
-        { type: '简单肯定', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.simpleAffirmative || 0 },
-    ] : [];
-
-        const config = {
+    const config = {
         data:chartData,
         xField: 'type',
         yField: 'value',

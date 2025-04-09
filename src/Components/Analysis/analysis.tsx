@@ -10,9 +10,7 @@ import qs from "qs";
 import {VideoPlayInfo} from "../../dtos/VideoPlayInfo.ts";
 import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
 import DemoColumn from "../DemoColumn/demoColumn.tsx";
-import {Column} from "@ant-design/plots";
-
-
+import DemoPie from "../DemoPie/demoPie.tsx";
 
 const Analysis: React.FC = () => {
 
@@ -49,24 +47,6 @@ const Analysis: React.FC = () => {
             setTranscriptAnalysis(transcriptAnalysis);
         })();
     }, [videoId]);
-
-    const chartData =  [
-        { type: '激励', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.motivate || 0 },
-        { type: '否定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.negative || 0 },
-        { type: '重复', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.repeat || 0 },
-        { type: '针对肯定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.targetedAffirmative || 0 },
-        { type: '简单肯定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.simpleAffirmative || 0 },
-    ];
-
-    const config = {
-        chartData,
-        xField: 'type',
-        yField: 'value',
-        shapeField: 'column25D',
-        style: {
-            fill: 'rgba(126, 212, 236, 0.8)',
-        },
-    };
 
     return <div style={{padding: '16px',}}>
         <Card title={videoInfo?.title || '默认标题'} styles={{
@@ -154,8 +134,8 @@ const Analysis: React.FC = () => {
             </div>
         </Card>
         {/*<DemoCard/>*/}
-        {/*<DemoColumn/>*/}
-        <Column {...config} />
+        <DemoColumn/>
+        <DemoPie/>
     </div>
 };
 export default Analysis;
