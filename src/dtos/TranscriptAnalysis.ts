@@ -43,6 +43,7 @@ interface Feedback {
     content: string;
     type: string;
 }
+
 interface InteractionTypeStats {
     questionCounts: QuestionCounts;
     feedbackCounts: FeedbackCounts;

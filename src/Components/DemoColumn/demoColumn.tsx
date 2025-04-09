@@ -8,9 +8,9 @@ import axiosWithInterceptor from "../../axios/axios.tsx";
 import qs from "qs";
 
 const DemoColumn = () => {
+
     const [transcriptAnalysis, setTranscriptAnalysis] = useState<TranscriptAnalysis>();
     const navigate = useNavigate();
-
     const location = useLocation();
     const queryParams: URLSearchParams = new URLSearchParams(location.search);
     const videoIdString: string | null = queryParams.get(RouteQueryParams.VideoId);
@@ -27,18 +27,19 @@ const DemoColumn = () => {
                     params: {videoId: videoId},
                     paramsSerializer: params => qs.stringify(params)
                 });
+
             const transcriptAnalysis: TranscriptAnalysis = videoAnalysisResponse.data.data;
             setTranscriptAnalysis(transcriptAnalysis);
         })();
     }, [videoId]);
 
-    // 将反馈统计数据转换为图表需要的格式
+
     const chartData = transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts ? [
-        { type: '激励', value: transcriptAnalysis.interactionTypeCountMap.feedbackCounts.motivate || 0 },
-        { type: '否定', value: transcriptAnalysis.interactionTypeCountMap.feedbackCounts.negative || 0 },
-        { type: '重复', value: transcriptAnalysis.interactionTypeCountMap.feedbackCounts.repeat || 0 },
-        { type: '针对肯定', value: transcriptAnalysis.interactionTypeCountMap.feedbackCounts.targetedAffirmative || 0 },
-        { type: '简单肯定', value: transcriptAnalysis.interactionTypeCountMap.feedbackCounts.simpleAffirmative || 0 },
+        { type: '激励', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.motivate || 0 },
+        { type: '否定', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.negative || 0 },
+        { type: '重复', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.repeat || 0 },
+        { type: '针对肯定', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.targetedAffirmative || 0 },
+        { type: '简单肯定', value: transcriptAnalysis?.interactionTypeCountMap.feedbackCounts.simpleAffirmative || 0 },
     ] : [];
 
         const config = {
