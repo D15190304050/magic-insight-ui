@@ -1,6 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Avatar, Button, Col, Divider, List, Pagination, Row, Space} from "antd";
-import {EditOutlined, LikeOutlined, MessageOutlined, PlayCircleOutlined, StarOutlined} from "@ant-design/icons";
+import {
+    BarChartOutlined,
+    EditOutlined,
+    LikeOutlined,
+    MessageOutlined,
+    PlayCircleOutlined,
+    StarOutlined,
+    VideoCameraOutlined
+} from "@ant-design/icons";
 import {createSearchParams, Link, useNavigate} from "react-router-dom";
 import {NavigateFunction} from "react-router/dist/lib/hooks";
 import RoutePaths from "../../constants/RoutePaths.ts";
@@ -53,7 +61,15 @@ const VideoManagement = () =>
         const destinationUrl: string = RoutePaths.VideoUpdate + "?" + searchParams.toString();
         navigate(destinationUrl);
     }
+    const onBtAnalyzeClick = (id: number) =>
+    {
+        const searchParams = createSearchParams({
+            videoId: id.toString(),
+        });
 
+        const destinationUrl: string = RoutePaths.Analysis + "?" + searchParams.toString();
+        navigate(destinationUrl);
+    }
     useEffect(() =>
     {
         (async () =>
@@ -107,6 +123,8 @@ const VideoManagement = () =>
                                     <IconText icon={LikeOutlined} text={item.likeCount + ""} key={"list-like-o-" + item.id} />,
                                     <IconText icon={MessageOutlined} text={item.commentCount + ""} key={"list-message-" + item.id} />,
                                     <Button type="primary" icon={<EditOutlined />} onClick={() => onBtEditClick(item.id)} key={"list-bt-edit-" + item.id}>Edit</Button>,
+                                    <Button type="primary" icon={<BarChartOutlined/>} onClick={() => onBtAnalyzeClick(item.id)} key={"list-video-analyze-" + item.id}>analysis</Button>,
+
                                 ]}
                             >
                                 <List.Item.Meta

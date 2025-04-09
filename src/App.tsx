@@ -10,7 +10,7 @@ import VideoUpdate from "./Components/VideoUpdate";
 import VideoPlayPage from "./Components/VideoPlayPage";
 // import PlaylistPage from "./Components/PlaylistPage";
 // import FollowingAndFollowerPage from "./Components/FollowingAndFollowerPage";
-import Analysis from "./Components/Analysis";
+import Analysis from "./Components/Analysis/analysis.tsx";
 
 function App()
 {
