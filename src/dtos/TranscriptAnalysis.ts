@@ -3,7 +3,7 @@ interface TranscriptAnalysis {
     questionAnalysis: QuestionAnalysis;
     interactionRecords: InteractionRecord[];
     courseAnalysis: CourseAnalysis;
-    interactionTypeCountMap: Map<string, Map<string, number>>;
+    interactionTypeCountMap: InteractionTypeStats;
 }
 interface SpeechRateAnalysis {
     value: number;
@@ -43,6 +43,25 @@ interface Feedback {
     content: string;
     type: string;
 }
+interface InteractionTypeStats {
+    questionCounts: QuestionCounts;
+    feedbackCounts: FeedbackCounts;
+}
+
+interface QuestionCounts {
+    what: number;
+    why: number;
+    how: number;
+    whatIf: number;
+}
+
+interface FeedbackCounts {
+    motivate: number;
+    negative: number;
+    repeat: number;
+    targetedAffirmative: number;
+    simpleAffirmative: number;
+}
 export type{
     SpeechRateAnalysis,
     QuestionAnalysis,
@@ -50,5 +69,8 @@ export type{
     CourseAnalysis,
     TranscriptAnalysis,
     Question,
-    Feedback
+    Feedback,
+    InteractionTypeStats,
+    QuestionCounts,
+    FeedbackCounts
 };
