@@ -15,6 +15,8 @@ interface VideoPlayInfo
     userLikes: boolean,
     userFavorites: boolean,
     creatorName: string,
+
+    markedVideoPlayUrl: string,
 }
 
 interface SetVideoInfoRequest

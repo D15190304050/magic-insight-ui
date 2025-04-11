@@ -286,6 +286,7 @@ const VideoPlayPage = () =>
             </Row>
 
             <VideoCommentArea videoId={videoId}/>
+            <VideoPlayer videoPlayUrl={videoInfo?.markedVideoPlayUrl}/>
         </Spin>
     );
 }
