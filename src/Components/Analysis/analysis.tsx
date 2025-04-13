@@ -11,6 +11,7 @@ import {VideoPlayInfo} from "../../dtos/VideoPlayInfo.ts";
 import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
 import DemoColumn from "../DemoColumn/demoColumn.tsx";
 import DemoPie from "../DemoPie/demoPie.tsx";
+import DemoCard from "../DemoCard/demoCard.tsx";
 
 const Analysis: React.FC = () => {
 
@@ -48,94 +49,122 @@ const Analysis: React.FC = () => {
         })();
     }, [videoId]);
 
-    return <div style={{padding: '16px',}}>
-        <Card title={videoInfo?.title || '默认标题'} styles={{
-            header: {
-                borderBottom: 'none',
-                fontSize: '30px',
-                textAlign: 'left',
-                marginTop: '20px'
-            }
-        }}>
-            <div style={{textAlign: 'left', marginBottom: '30px'}}>
-                <Meta
-                    avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>}
-                    title={userInfo.nickname}
-                />
-            </div>
-            <Row gutter={16}>
-                <Col span={12}>
-                    <Card style={{borderRadius: '8px', height: '250px'}}>
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            marginTop: '50px'
+    return (
+        <div style={{padding: '16px'}}>
+            <Card title={videoInfo?.title || '默认标题'} styles={{
+                header: {
+                    borderBottom: 'none',
+                    fontSize: '30px',
+                    textAlign: 'left',
+                    marginTop: '20px'
+                }
+            }}>
+                <div style={{textAlign: 'left', marginBottom: '30px'}}>
+                    <Meta
+                        avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>}
+                        title={userInfo.nickname}
+                    />
+                </div>
+                <Row gutter={16}>
+                    <Col span={8}>
+                        <Card title="AI课堂总览" style={{  borderRadius: '8px',height: '400px', }} styles={{
+                            header: {
+                                fontSize: '25px',
+                                borderBottom: 'none',
+                                marginTop: '20px',
+                                textAlign: 'left',
+                                color: '#1890ff',
+                                fontWeight: 'bold'
+                            }
                         }}>
-                            <div>
-                                <span style={{
-                                    fontSize: '32px',
-                                    fontWeight: 'bold'
-                                }}>{transcriptAnalysis?.courseAnalysis.totalMinutes || "默认"}</span> 分钟
-                                <p style={{marginTop: '8px',color: '#666'}}>课堂时长</p>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                                <div>
+                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.totalMinutes || "默认"}</span>分钟
+                                    <p style={{ marginTop: '8px',color: '#666' }}>课堂时长</p>
+                                </div>
+                                <div>
+                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.proportionTeacher || "默认"}%</span>
+                                    <p style={{ marginTop: '8px',color: '#666' }}>教师行为</p>
+                                </div>
+                                <div>
+                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.proportionStudent || "默认"}%</span>
+                                    <p style={{ marginTop: '8px',color: '#666' }}>学生行为</p>
+                                </div>
                             </div>
-                            <div>
-                                <span style={{
-                                    fontSize: '32px',
-                                    fontWeight: 'bold'
-                                }}>{transcriptAnalysis?.courseAnalysis.proportionTeacher || "默认"}%</span>
-                                <p style={{marginTop: '8px',color: '#666'}}>教师行为</p>
+                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px' }}>
+                                AI分析
                             </div>
-                            <div>
-                                <span style={{
-                                    fontSize: '32px',
-                                    fontWeight: 'bold'
-                                }}>{transcriptAnalysis?.courseAnalysis.proportionStudent || "默认"}%</span>
-                                <p style={{marginTop: '8px',color: '#666'}}>学生行为</p>
-                            </div>
-                        </div>
-                    </Card>
-                </Col>
-                <Col span={12}>
-                    <Card style={{borderRadius: '8px', height: '250px'}}>
-                        <div style={{textAlign: 'left'}}>
-                            <span style={{fontSize: '15px', fontWeight: 'bold'}}>对话型授课</span>
-                            <p style={{color: '#666', marginTop: '8px', fontSize: '13px', textAlign: 'left'}}>
-                                从Rt值0.50和Ch值0.45来看，本节课属于对话型课堂类型。对话型课堂的特点是教师与学生之间的互动适中，能有效促进学生的思考和参与，同时也能让教师根据学生的反馈进行适度引导。然而，过高的行为转换率可能导致课堂节奏的快速变化，影响学生对知识的深入理解和吸收。建议在今后的教学中，教师可以适当减少引导的频率和时间，给学生更多的思考和表达机会，如通过小组讨论或角色扮演，增强课堂的连贯性和深度。
+                            <p style={{textAlign: 'left'}}>
+                                {transcriptAnalysis?.courseAnalysis.aiCourseOverview || "默认内容"}
                             </p>
-                        </div>
-                    </Card>
-                </Col>
-            </Row>
-        </Card>
-        <Card title="AI课程总览" extra={<a href="#">More</a>} styles={{
-            header: {
-                fontSize: '25px',
-                borderBottom: 'none',
-                marginTop: '20px',
-                textAlign: 'left',
-                color: '#1890ff',
-                fontWeight: 'bold'
-            }
-        }}>
-            <div style={{padding: "0 0"}}>
-                <p style={{color: '#666', fontSize: '15px', textAlign: 'left'}}>
-                    {transcriptAnalysis?.courseAnalysis.aiCourseOverview || "默认内容"}
-                </p>
-                <button style={{
-                    backgroundColor: '#37a000',
-                    color: '#fff',
-                    padding: '8px 16px',
-                    borderRadius: '4px',
-                    border: 'none',
-                    cursor: 'pointer'
-                }}>查看更多
-                </button>
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card title="讲授分析" style={{  borderRadius: '8px',height: '400px', }} styles={{
+                            header: {
+                                fontSize: '25px',
+                                borderBottom: 'none',
+                                marginTop: '20px',
+                                textAlign: 'left',
+                                color: '#1890ff',
+                                fontWeight: 'bold'
+                            }
+                        }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginBottom: '16px' }}>
+                                <div>
+                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.speechRateAnalysis.value}</span> 字/秒
+                                    <p style={{ marginTop: '8px',color: '#666' }}>平均语速</p>
+                                </div>
+                                <div>
+                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.speechRateAnalysis.wordCount}</span> 字
+                                    <p style={{ marginTop: '8px',color: '#666' }}>讲授字数</p>
+                                </div>
+                            </div>
+                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px' }}>
+                                AI分析
+                            </div>
+                            <p style={{textAlign: 'left'}}>
+                                {transcriptAnalysis?.speechRateAnalysis.analysisOfSpeechRate}
+                            </p>
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card title="提问分析" style={{  borderRadius: '8px',height: '400px', }} styles={{
+                            header: {
+                                fontSize: '25px',
+                                borderBottom: 'none',
+                                marginTop: '20px',
+                                textAlign: 'left',
+                                color: '#1890ff',
+                                fontWeight: 'bold'
+                            }
+                        }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginBottom: '16px' }}>
+                                <div>
+                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.questionAnalysis.coreQuestionCount}</span> 次
+                                    <p style={{ marginTop: '8px',color: '#666' }}>核心提问</p>
+                                </div>
+                                <div>
+                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.questionAnalysis.evaluationCount}</span> 次
+                                    <p style={{ marginTop: '8px',color: '#666' }}>评价次数</p>
+                                </div>
+                            </div>
+                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px', }}>
+                                AI分析
+                            </div>
+                            <p style={{textAlign: 'left'}}>
+                                {transcriptAnalysis?.questionAnalysis.analysisOfQuestioning}</p>
+                            <p style={{textAlign: 'left'}}>
+                                {transcriptAnalysis?.questionAnalysis.analysisOfEvaluation}</p>
+                        </Card>
+                    </Col>
+                </Row>
+            </Card>
+            <div style={{ display: 'flex', gap: '16px', marginTop:'100px' }}>
+                <div style={{ flex: 1 }}><DemoColumn /></div>
+                <div style={{ flex: 1 }}><DemoPie /></div>
             </div>
-        </Card>
-        {/*<DemoCard/>*/}
-        <DemoColumn/>
-        <DemoPie/>
-    </div>
+        </div>
+    );
 };
 export default Analysis;

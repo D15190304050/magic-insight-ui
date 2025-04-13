@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { Pie } from '@ant-design/plots';
+import {Column, Pie} from '@ant-design/plots';
 import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
 import {useLocation, useNavigate} from "react-router-dom";
 import RouteQueryParams from "../../constants/RouteQueryParams.ts";
-import {message} from "antd";
+import {Card, message} from "antd";
 import axiosWithInterceptor from "../../axios/axios.tsx";
 import qs from "qs";
 
@@ -59,7 +59,7 @@ const DemoPie: React.FC = () => {
             {
                 type: 'text',
                 style: {
-                    text: 'questioning\ntype',
+                    text: 'Question\nType',
                     x: '50%',
                     y: '50%',
                     textAlign: 'center',
@@ -70,7 +70,14 @@ const DemoPie: React.FC = () => {
         ],
     };
 
-    return <Pie {...config} />;
+    return (<Card title="提问类型-4MAT模式"  styles={{
+        header: {
+            textAlign: 'left',
+            marginLeft: '200px',
+        }
+    }}>
+        <Pie {...config} />
+    </Card>);
 };
 
 export default DemoPie; // 作为组件导出

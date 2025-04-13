@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
 import {useLocation, useNavigate} from "react-router-dom";
 import RouteQueryParams from "../../constants/RouteQueryParams.ts";
-import {message} from "antd";
+import {Card, message} from "antd";
 import axiosWithInterceptor from "../../axios/axios.tsx";
 import qs from "qs";
 
@@ -52,7 +52,11 @@ const DemoColumn = () => {
     };
 
 
-    return <Column {...config} />;
+    return (
+        <Card title="评价类型" bordered={false}>
+            <Column {...config} />
+        </Card>
+    );
 };
 
 export default DemoColumn;

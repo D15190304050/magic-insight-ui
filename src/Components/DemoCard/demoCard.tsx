@@ -6,7 +6,7 @@ const DemoCard: React.FC = () => {
         <div id="mindMapContainer" style={{ width: '100%', padding: '16px' }}>
             <Row gutter={16}>
                 <Col span={12}>
-                    <Card title="讲授分析" style={{ backgroundColor: '#e6f7f3', borderRadius: '8px',height: '450px', }}>
+                    <Card title="讲授分析" style={{  borderRadius: '8px',height: '450px', }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                             <div>
                                 <span style={{ fontSize: '32px', fontWeight: 'bold' }}>3.4</span> 字/秒
@@ -26,7 +26,7 @@ const DemoCard: React.FC = () => {
                     </Card>
                 </Col>
                 <Col span={12}>
-                    <Card title="提问分析" style={{ backgroundColor: '#e6f7f3', borderRadius: '8px',height: '450px', }}>
+                    <Card title="提问分析" style={{  borderRadius: '8px',height: '450px', }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                             <div>
                                 <span style={{ fontSize: '32px', fontWeight: 'bold' }}>29</span> 次

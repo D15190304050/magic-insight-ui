@@ -278,15 +278,10 @@ const VideoPlayPage = () =>
                 <Col style={{textAlign: "left", marginLeft: "10px"}}>
                     <span>{favoriteCount}</span>
                 </Col>
-                <Col span={20} style={{textAlign: "right"}}>
-                    <Popover content={setSummaryContent()} title="Summary" trigger="click">
-                        <Button>Show summary</Button>
-                    </Popover>
-                </Col>
             </Row>
 
-            <VideoCommentArea videoId={videoId}/>
             <VideoPlayer videoPlayUrl={videoInfo?.markedVideoPlayUrl}/>
+            <VideoCommentArea videoId={videoId}/>
         </Spin>
     );
 }

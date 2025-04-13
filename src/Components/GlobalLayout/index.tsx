@@ -10,8 +10,8 @@ import {useNavigate} from "react-router-dom";
 import AuthKeys from "../../constants/AuthKeys.ts";
 import RoutePaths from "../../constants/RoutePaths.ts";
 
-const ColPush: number = 6;
-const ColSpan: number = 12;
+const ColPush: number = 1;
+const ColSpan: number = 22;
 
 const { Search } = Input;
 const { Header, Content, Footer } = Layout;
