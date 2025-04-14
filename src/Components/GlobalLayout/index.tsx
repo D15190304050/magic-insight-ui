@@ -71,10 +71,7 @@ const GlobalLayout = ({children}) => {
                     <Col>
                         <a href={"/"}>Magic Insight</a>
                     </Col>
-                    <Col span={18} style={{justifyContent: "center"}}>
-                        <Search placeholder="input search text" onSearch={onSearch} enterButton style={{verticalAlign: "middle", width: "60%"}}/>
-                    </Col>
-                    <Col span={4}>
+                    <Col span={4} offset={18}>
                         <Dropdown menu={{items: userMenuItems, onClick: onUserMenuClick}}>
                             <a onClick={(e) => e.preventDefault()}>
                                 <Space>
