@@ -87,7 +87,7 @@ const VideoManagement = () =>
         <div>
             <Row>
                 <Col span={24}>
-                    <h2>Video management</h2>
+                    <h2>视频管理</h2>
                 </Col>
             </Row>
             <Row>
@@ -99,10 +99,10 @@ const VideoManagement = () =>
                 <Col span={24}>
                     <Row>
                         <Col span={3}>
-                            <h3 style={{textAlign: "left", lineHeight: "15px"}}>Total videos: {videoCount}</h3>
+                            <h3 style={{textAlign: "left", lineHeight: "15px"}}>视频数量: {videoCount}</h3>
                         </Col>
                         <Col push={18} style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                            <Button type="primary" onClick={jumpToUpload}>Upload new</Button>
+                            <Button type="primary" onClick={jumpToUpload}>上传视频</Button>
                         </Col>
                     </Row>
                 </Col>
@@ -122,8 +122,8 @@ const VideoManagement = () =>
                                     <IconText icon={StarOutlined} text={item.favoritesCount + ""} key={"list-star-o-" + item.id} />,
                                     <IconText icon={LikeOutlined} text={item.likeCount + ""} key={"list-like-o-" + item.id} />,
                                     <IconText icon={MessageOutlined} text={item.commentCount + ""} key={"list-message-" + item.id} />,
-                                    <Button type="primary" icon={<EditOutlined />} onClick={() => onBtEditClick(item.id)} key={"list-bt-edit-" + item.id}>Edit</Button>,
-                                    <Button type="primary" icon={<BarChartOutlined/>} onClick={() => onBtAnalyzeClick(item.id)} key={"list-video-analyze-" + item.id}>analysis</Button>,
+                                    <Button type="primary" icon={<EditOutlined />} onClick={() => onBtEditClick(item.id)} key={"list-bt-edit-" + item.id}>编辑</Button>,
+                                    <Button type="primary" icon={<BarChartOutlined/>} onClick={() => onBtAnalyzeClick(item.id)} key={"list-video-analyze-" + item.id}>分析结果</Button>,
 
                                 ]}
                             >
@@ -143,7 +143,7 @@ const VideoManagement = () =>
                         total={videoCount}
                         showSizeChanger
                         showQuickJumper
-                        showTotal={(total) => `Total videos: ${total}`}
+                        showTotal={(total) => `视频数量: ${total}`}
                         onChange={onPageChange}
                     />
                 </Col>

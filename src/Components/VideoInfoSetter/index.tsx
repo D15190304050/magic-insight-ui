@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {InboxOutlined, LoadingOutlined, PlusOutlined} from '@ant-design/icons';
-import {Button, Divider, Form, GetProp, Input, Select, Space, Spin, UploadProps} from 'antd';
+import {Button, Divider, Form, GetProp, Input, Select, Space, Spin, Props, UploadProps} from 'antd';
 import { message, Upload } from 'antd';
 import TextArea from "antd/es/input/TextArea";
 import FileConstants from "../../constants/FileConstants.ts";
@@ -301,10 +301,9 @@ const VideoInfoSetter = ({sourceVideoId}) =>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined/>
                     </p>
-                    <p className="ant-upload-text">Click or drag video file to this area to upload</p>
+                    <p className="ant-upload-text">单击或拖动视频文件到该区域进行上传</p>
                     <p className="ant-upload-hint">
-                        Support for a single upload. Strictly prohibited from uploading company data or other
-                        banned files.
+                        仅支持单个上传，仅支持上传.mp4或.avi格式视频
                     </p>
                 </Dragger>
                 <Divider/>
@@ -317,7 +316,7 @@ const VideoInfoSetter = ({sourceVideoId}) =>
                     onReset={handleReset}
                 >
                     <Form.Item
-                        label="Cover"
+                        label="封面"
                         name="coverUrl"
                         valuePropName="fileList"
                         getValueFromEvent={({ fileList }) => fileList}
@@ -339,11 +338,11 @@ const VideoInfoSetter = ({sourceVideoId}) =>
 
                     <Form.Item
                         name="title"
-                        label="Title"
+                        label="标题"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the title of your video.',
+                                message: '请输入视频标题',
                             },
                         ]}
                     >
@@ -352,7 +351,7 @@ const VideoInfoSetter = ({sourceVideoId}) =>
 
                     <Form.Item
                         name="introduction"
-                        label="Introduction"
+                        label="介绍"
                     >
                         <TextArea/>
                     </Form.Item>
@@ -360,10 +359,10 @@ const VideoInfoSetter = ({sourceVideoId}) =>
                     <Form.Item {...tailFormItemLayout}>
                         <Space>
                             <Button type="primary" htmlType="submit">
-                                Submit
+                                提交
                             </Button>
 
-                            <Button htmlType="reset">Reset</Button>
+                            <Button htmlType="reset">重置</Button>
                         </Space>
                     </Form.Item>
                 </Form>

@@ -79,7 +79,7 @@ const Login = () => {
                     </div>
                     <div className="login-wrap">
                         <Card
-                            title="Magic insight"
+                            title="基于语音识别和动作识别的AI课堂分析系统"
                             bordered={false}
                             style={{
                                 width: 500, // Card width: 500 px.
@@ -104,7 +104,7 @@ const Login = () => {
                                 autoComplete="off"
                             >
                                 <Form.Item
-                                    label="Username" // "label" is used for display.
+                                    label="用户名" // "label" is used for display.
                                     name="username" // "name" is used for http parameters.
                                     rules={[
                                         {
@@ -117,12 +117,12 @@ const Login = () => {
                                 </Form.Item>
 
                                 <Form.Item
-                                    label="Password"
+                                    label="密码"
                                     name="password"
                                     rules={[
                                         {
                                             required: true,
-                                            message: 'Please input your password!',
+                                            message: '请输入密码!',
                                         },
                                     ]}
                                 >
@@ -137,7 +137,7 @@ const Login = () => {
                                         span: 16,
                                     }}
                                 >
-                                    <Checkbox defaultChecked>Remember me</Checkbox>
+                                    <Checkbox defaultChecked>记住密码</Checkbox>
                                 </Form.Item>
 
                                 <Form.Item
@@ -148,10 +148,10 @@ const Login = () => {
                                 >
                                     <Space>
                                         <Button type="primary" htmlType="submit">
-                                            Login
+                                            登录
                                         </Button>
                                         <Button type="default" htmlType="button" onClick={jumpToRegisterPage}>
-                                            Register
+                                            注册
                                         </Button>
                                     </Space>
                                 </Form.Item>

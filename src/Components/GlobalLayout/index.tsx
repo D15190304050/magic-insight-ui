@@ -69,7 +69,7 @@ const GlobalLayout = ({children}) => {
             >
                 <Row>
                     <Col>
-                        <a href={"/"}>Magic Insight</a>
+                        <a href={"/"}>AI课堂分析系统</a>
                     </Col>
                     <Col span={4} offset={18}>
                         <Dropdown menu={{items: userMenuItems, onClick: onUserMenuClick}}>
