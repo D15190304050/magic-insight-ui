@@ -248,40 +248,61 @@ const VideoPlayPage = () =>
 
             <VideoPlayer videoPlayUrl={videoInfo?.videoPlayUrl}/>
 
+                <Popover placement="rightBottom" title={videoInfo?.title || "默认标题"} trigger="click"
+                         content={<div style={{
+                             width: "300px",
+                             height: "500px",
+                             overflowY: "auto", // 设置内容垂直方向可滚动
+                             overflowX: "hidden", // 设置内容水平方向不可滚动
+                             padding: "8px",
+                             boxSizing: "border-box", // 确保宽度和高度包含内边距
+                         }}>
+                {videoInfo?.transcript?.split("\n")
+                    .map((line, index) => (
+                        <div key={index}>{line}</div>
+                    ))}
+            </div>}>
+                <Button>字幕</Button>
+            </Popover>
+
+
+
+
+
             {/* Introduction. */}
-            <Collapse style={{textAlign: "left"}} items={[{
-                key: 1,
-                label: "Introduction",
-                children: videoInfo?.introduction,
-            }]}/>
+            {/*<Collapse style={{textAlign: "left"}} items={[{*/}
+            {/*    key: 1,*/}
+            {/*    label: "Introduction",*/}
+            {/*    children: videoInfo?.introduction,*/}
+            {/*}]}/>*/}
 
             {/* Like & favorites */}
-            <Row style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: '10px',
-                marginTop: '10px',
-            }}>
-                <Col>
-                    <Button onClick={changeLikeStatus}>
-                        {currentUserLikes ? <LikeFilled/> : <LikeOutlined/>}
-                    </Button>
-                </Col>
-                <Col style={{textAlign: "left", marginLeft: "10px"}}>
-                    <span>{likeCount}</span>
-                </Col>
-                <Col>
-                    <Button onClick={openPlaylistModal}>
-                        {currentUserFavorites ? <StarFilled/> : <StarOutlined/>}
-                    </Button>
-                </Col>
-                <Col style={{textAlign: "left", marginLeft: "10px"}}>
-                    <span>{favoriteCount}</span>
-                </Col>
-            </Row>
+            {/*<Row style={{*/}
+            {/*    display: 'flex',*/}
+            {/*    alignItems: 'center',*/}
+            {/*    marginBottom: '10px',*/}
+            {/*    marginTop: '10px',*/}
+            {/*}}>*/}
+            {/*    <Col>*/}
+            {/*        <Button onClick={changeLikeStatus}>*/}
+            {/*            {currentUserLikes ? <LikeFilled/> : <LikeOutlined/>}*/}
+            {/*        </Button>*/}
+            {/*    </Col>*/}
+            {/*    <Col style={{textAlign: "left", marginLeft: "10px"}}>*/}
+            {/*        <span>{likeCount}</span>*/}
+            {/*    </Col>*/}
+            {/*    <Col>*/}
+            {/*        <Button onClick={openPlaylistModal}>*/}
+            {/*            {currentUserFavorites ? <StarFilled/> : <StarOutlined/>}*/}
+            {/*        </Button>*/}
+            {/*    </Col>*/}
+            {/*    <Col style={{textAlign: "left", marginLeft: "10px"}}>*/}
+            {/*        <span>{favoriteCount}</span>*/}
+            {/*    </Col>*/}
+            {/*</Row>*/}
 
             <VideoPlayer videoPlayUrl={videoInfo?.markedVideoPlayUrl}/>
-            <VideoCommentArea videoId={videoId}/>
+            {/*<VideoCommentArea videoId={videoId}/>*/}
         </Spin>
     );
 }

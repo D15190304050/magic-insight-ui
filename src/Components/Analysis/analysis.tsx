@@ -11,7 +11,7 @@ import {VideoPlayInfo} from "../../dtos/VideoPlayInfo.ts";
 import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
 import DemoColumn from "../DemoColumn/demoColumn.tsx";
 import DemoPie from "../DemoPie/demoPie.tsx";
-import DemoCard from "../DemoCard/demoCard.tsx";
+import DemoArea from "../DemoArea/demoArea.tsx";
 
 const Analysis: React.FC = () => {
 
@@ -54,20 +54,23 @@ const Analysis: React.FC = () => {
             <Card title={videoInfo?.title || '默认标题'} styles={{
                 header: {
                     borderBottom: 'none',
-                    fontSize: '30px',
+                    fontSize: '50px',
                     textAlign: 'left',
                     marginTop: '20px'
                 }
             }}>
-                <div style={{textAlign: 'left', marginBottom: '30px'}}>
+                <div style={{textAlign: 'left', marginBottom: '30px',}}>
                     <Meta
-                        avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>}
+                        avatar={<Avatar src={userInfo.avatarUrl}/>}
                         title={userInfo.nickname}
                     />
                 </div>
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Card title="AI课堂总览" style={{  borderRadius: '8px',height: '400px', }} styles={{
+                        <Card title="AI课堂总览" style={{  borderRadius: '8px',height: '450px',background: 'rgba(240, 249, 255, 0.6)',
+                            backdropFilter: 'blur(4px)',
+                            border: '1px solid rgba(24, 144, 255, 0.2)',
+                            boxShadow: '0 4px 20px rgba(24, 144, 255, 0.1)' }} styles={{
                             header: {
                                 fontSize: '25px',
                                 borderBottom: 'none',
@@ -79,19 +82,19 @@ const Analysis: React.FC = () => {
                         }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                                 <div>
-                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.totalMinutes || "默认"}</span>分钟
+                                    <span style={{ fontSize: '50px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.totalMinutes || "默认"}</span>分钟
                                     <p style={{ marginTop: '8px',color: '#666' }}>课堂时长</p>
                                 </div>
                                 <div>
-                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.proportionTeacher || "默认"}%</span>
+                                    <span style={{ fontSize: '50px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.proportionTeacher || "默认"}%</span>
                                     <p style={{ marginTop: '8px',color: '#666' }}>教师行为</p>
                                 </div>
                                 <div>
-                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.proportionStudent || "默认"}%</span>
+                                    <span style={{ fontSize: '50px', fontWeight: 'bold' }}>{transcriptAnalysis?.courseAnalysis.proportionStudent || "默认"}%</span>
                                     <p style={{ marginTop: '8px',color: '#666' }}>学生行为</p>
                                 </div>
                             </div>
-                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px' }}>
+                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px',fontSize:'25px' }}>
                                 AI分析
                             </div>
                             <p style={{textAlign: 'left'}}>
@@ -100,7 +103,7 @@ const Analysis: React.FC = () => {
                         </Card>
                     </Col>
                     <Col span={8}>
-                        <Card title="讲授分析" style={{  borderRadius: '8px',height: '400px', }} styles={{
+                        <Card title="讲授分析" style={{  borderRadius: '8px',height: '450px',boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }} styles={{
                             header: {
                                 fontSize: '25px',
                                 borderBottom: 'none',
@@ -112,15 +115,15 @@ const Analysis: React.FC = () => {
                         }}>
                             <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginBottom: '16px' }}>
                                 <div>
-                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.speechRateAnalysis.value}</span> 字/秒
+                                    <span style={{ fontSize: '50px', fontWeight: 'bold' }}>{transcriptAnalysis?.speechRateAnalysis.value}</span> 字/秒
                                     <p style={{ marginTop: '8px',color: '#666' }}>平均语速</p>
                                 </div>
                                 <div>
-                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.speechRateAnalysis.wordCount}</span> 字
+                                    <span style={{ fontSize: '50px', fontWeight: 'bold' }}>{transcriptAnalysis?.speechRateAnalysis.wordCount}</span> 字
                                     <p style={{ marginTop: '8px',color: '#666' }}>讲授字数</p>
                                 </div>
                             </div>
-                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px' }}>
+                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px',fontSize:'25px' }}>
                                 AI分析
                             </div>
                             <p style={{textAlign: 'left'}}>
@@ -129,7 +132,7 @@ const Analysis: React.FC = () => {
                         </Card>
                     </Col>
                     <Col span={8}>
-                        <Card title="提问分析" style={{  borderRadius: '8px',height: '400px', }} styles={{
+                        <Card title="提问分析" style={{  borderRadius: '8px',height: '450px',boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }} styles={{
                             header: {
                                 fontSize: '25px',
                                 borderBottom: 'none',
@@ -141,15 +144,15 @@ const Analysis: React.FC = () => {
                         }}>
                             <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginBottom: '16px' }}>
                                 <div>
-                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.questionAnalysis.coreQuestionCount}</span> 次
+                                    <span style={{ fontSize: '50px', fontWeight: 'bold' }}>{transcriptAnalysis?.questionAnalysis.coreQuestionCount}</span> 次
                                     <p style={{ marginTop: '8px',color: '#666' }}>核心提问</p>
                                 </div>
                                 <div>
-                                    <span style={{ fontSize: '32px', fontWeight: 'bold' }}>{transcriptAnalysis?.questionAnalysis.evaluationCount}</span> 次
+                                    <span style={{ fontSize: '50px', fontWeight: 'bold' }}>{transcriptAnalysis?.questionAnalysis.evaluationCount}</span> 次
                                     <p style={{ marginTop: '8px',color: '#666' }}>评价次数</p>
                                 </div>
                             </div>
-                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px', }}>
+                            <div style={{ color: '#52c41a', fontWeight: 'bold', marginBottom: '8px',fontSize:'25px' }}>
                                 AI分析
                             </div>
                             <p style={{textAlign: 'left'}}>
@@ -163,6 +166,7 @@ const Analysis: React.FC = () => {
             <div style={{ display: 'flex', gap: '16px', marginTop:'100px' }}>
                 <div style={{ flex: 1 }}><DemoColumn /></div>
                 <div style={{ flex: 1 }}><DemoPie /></div>
+                <div style={{ flex: 1 }}><DemoArea /></div>
             </div>
         </div>
     );

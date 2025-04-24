@@ -17,6 +17,7 @@ interface VideoPlayInfo
     creatorName: string,
 
     markedVideoPlayUrl: string,
+    transcript:string,
 }
 
 interface SetVideoInfoRequest

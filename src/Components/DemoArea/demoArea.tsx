@@ -1,13 +1,14 @@
-import { Column } from '@ant-design/plots';
-import {useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { Area } from '@ant-design/plots';
+import { Card, message } from 'antd';
+import axiosWithInterceptor from '../../axios/axios.tsx';
+import qs from 'qs';
+import { useLocation, useNavigate } from 'react-router-dom';
+import RouteQueryParams from '../../constants/RouteQueryParams.ts';
 import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
-import {useLocation, useNavigate} from "react-router-dom";
-import RouteQueryParams from "../../constants/RouteQueryParams.ts";
-import {Card, message} from "antd";
-import axiosWithInterceptor from "../../axios/axios.tsx";
-import qs from "qs";
 
-const DemoColumn = () => {
+const DemoArea = () => {
 
     const [transcriptAnalysis, setTranscriptAnalysis] = useState<TranscriptAnalysis>();
     const navigate = useNavigate();
@@ -15,11 +16,11 @@ const DemoColumn = () => {
     const queryParams: URLSearchParams = new URLSearchParams(location.search);
     const videoIdString: string | null = queryParams.get(RouteQueryParams.VideoId);
     const videoId: number = parseInt(videoIdString as string);
-    if (isNaN(videoId)) {
-        message.error("Invalid video ID.")
-            .then(x => navigate("/"));
-    }
 
+    if (isNaN(videoId)) {
+        message.error('Invalid video ID.')
+            .then(() => navigate('/'));
+    }
     useEffect(() => {
         (async () => {
             const videoAnalysisResponse = await axiosWithInterceptor.get("/api/video/analysis",
@@ -33,6 +34,7 @@ const DemoColumn = () => {
         })();
     }, [videoId]);
 
+
     const chartData =  [
         { type: '激励', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.motivate || 0 },
         { type: '否定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.negative || 0 },
@@ -42,25 +44,32 @@ const DemoColumn = () => {
     ];
 
     const config = {
-        data:chartData,
+        data: chartData,
         xField: 'type',
         yField: 'value',
-        shapeField: 'column25D',
         style: {
-            fill: 'rgba(126, 212, 236, 0.8)',
+            fill: 'linear-gradient(-90deg, white 0%, darkgreen 100%)',
+        },
+        axis: {
+            y: { labelFormatter: '~s' },
+        },
+        line: {
+            style: {
+                stroke: 'darkgreen',
+                strokeWidth: 2,
+            },
         },
     };
 
-
     return (
-        <Card title="评价类型" bordered={false} styles={{
+        <Card title="评价类型" styles={{
             header: {
                 fontSize: '25px',
             }
         }}>
-            <Column {...config} />
+            <Area {...config} />
         </Card>
     );
 };
 
-export default DemoColumn;
+export default DemoArea;

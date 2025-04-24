@@ -72,8 +72,7 @@ const DemoPie: React.FC = () => {
 
     return (<Card title="提问类型-4MAT模式"  styles={{
         header: {
-            textAlign: 'left',
-            marginLeft: '200px',
+            fontSize: '25px',
         }
     }}>
         <Pie {...config} />
