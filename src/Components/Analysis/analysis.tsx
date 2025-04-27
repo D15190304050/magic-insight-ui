@@ -39,6 +39,7 @@ const Analysis: React.FC = () => {
             const videoInfo: VideoPlayInfo = videoInfoResponse.data.data;
             setVideoInfo(videoInfo);
 
+            // Reduce the call of "/api/video/analysis".
             const videoAnalysisResponse = await axiosWithInterceptor.get("/api/video/analysis",
                 {
                     params: {videoId: videoId},
@@ -166,7 +167,7 @@ const Analysis: React.FC = () => {
             <div style={{ display: 'flex', gap: '16px', marginTop:'100px' }}>
                 <div style={{ flex: 1 }}><DemoColumn /></div>
                 <div style={{ flex: 1 }}><DemoPie /></div>
-                <div style={{ flex: 1 }}><DemoArea /></div>
+                <div style={{ flex: 1 }}><DemoArea feedbackCounts={transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts} /></div>
             </div>
         </div>
     );

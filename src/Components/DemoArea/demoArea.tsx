@@ -6,11 +6,11 @@ import axiosWithInterceptor from '../../axios/axios.tsx';
 import qs from 'qs';
 import { useLocation, useNavigate } from 'react-router-dom';
 import RouteQueryParams from '../../constants/RouteQueryParams.ts';
-import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
+import {FeedbackCounts, TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
 
-const DemoArea = () => {
+// Upper case for the first letter => file name.
+const DemoArea = ({feedbackCounts}: {feedbackCounts: FeedbackCounts | undefined}) => {
 
-    const [transcriptAnalysis, setTranscriptAnalysis] = useState<TranscriptAnalysis>();
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams: URLSearchParams = new URLSearchParams(location.search);
@@ -21,26 +21,13 @@ const DemoArea = () => {
         message.error('Invalid video ID.')
             .then(() => navigate('/'));
     }
-    useEffect(() => {
-        (async () => {
-            const videoAnalysisResponse = await axiosWithInterceptor.get("/api/video/analysis",
-                {
-                    params: {videoId: videoId},
-                    paramsSerializer: params => qs.stringify(params)
-                });
 
-            const transcriptAnalysis: TranscriptAnalysis = videoAnalysisResponse.data.data;
-            setTranscriptAnalysis(transcriptAnalysis);
-        })();
-    }, [videoId]);
-
-
-    const chartData =  [
-        { type: '激励', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.motivate || 0 },
-        { type: '否定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.negative || 0 },
-        { type: '重复', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.repeat || 0 },
-        { type: '针对肯定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.targetedAffirmative || 0 },
-        { type: '简单肯定', value: transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts?.simpleAffirmative || 0 },
+    const chartData = [
+        { type: '激励', value: feedbackCounts?.motivate || 0 },
+        { type: '否定', value: feedbackCounts?.negative || 0 },
+        { type: '重复', value: feedbackCounts?.repeat || 0 },
+        { type: '针对肯定', value: feedbackCounts?.targetedAffirmative || 0 },
+        { type: '简单肯定', value: feedbackCounts?.simpleAffirmative || 0 },
     ];
 
     const config = {

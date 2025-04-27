@@ -259,15 +259,11 @@ const VideoPlayPage = () =>
                          }}>
                 {videoInfo?.transcript?.split("\n")
                     .map((line, index) => (
-                        <div key={index}>{line}</div>
+                        <div key={videoInfo?.id + "-" + index}>{line}</div>
                     ))}
             </div>}>
                 <Button>字幕</Button>
             </Popover>
-
-
-
-
 
             {/* Introduction. */}
             {/*<Collapse style={{textAlign: "left"}} items={[{*/}
