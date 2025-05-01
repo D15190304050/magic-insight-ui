@@ -1,14 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {Column, Pie} from '@ant-design/plots';
-import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
+import React from 'react';
+import {Pie} from '@ant-design/plots';
+import {QuestionCounts} from "../../dtos/TranscriptAnalysis.ts";
 import {useLocation, useNavigate} from "react-router-dom";
 import RouteQueryParams from "../../constants/RouteQueryParams.ts";
 import {Card, message} from "antd";
-import axiosWithInterceptor from "../../axios/axios.tsx";
-import qs from "qs";
 
-const DemoPie: React.FC = () => {
-    const [transcriptAnalysis, setTranscriptAnalysis] = useState<TranscriptAnalysis>();
+const DemoPie: React.FC = ({questionCounts}: { questionCounts: QuestionCounts | undefined }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const queryParams: URLSearchParams = new URLSearchParams(location.search);
@@ -19,25 +16,12 @@ const DemoPie: React.FC = () => {
             .then(x => navigate("/"));
     }
 
-    useEffect(() => {
-        (async () => {
-            const videoAnalysisResponse = await axiosWithInterceptor.get("/api/video/analysis",
-                {
-                    params: {videoId: videoId},
-                    paramsSerializer: params => qs.stringify(params)
-                });
-
-            const transcriptAnalysis: TranscriptAnalysis = videoAnalysisResponse.data.data;
-            setTranscriptAnalysis(transcriptAnalysis);
-        })();
-    }, [videoId]);
-
     const config = {
         data: [
-            { type: '是何问题', value: transcriptAnalysis?.interactionTypeCountMap?.questionCounts?.what },
-            { type: '为何问题', value: transcriptAnalysis?.interactionTypeCountMap?.questionCounts?.why },
-            { type: '如何问题', value: transcriptAnalysis?.interactionTypeCountMap?.questionCounts?.how },
-            { type: '若何问题', value: transcriptAnalysis?.interactionTypeCountMap?.questionCounts?.whatIf },
+            {type: '是何问题', value: questionCounts?.what},
+            {type: '为何问题', value: questionCounts?.why},
+            {type: '如何问题', value: questionCounts?.how},
+            {type: '若何问题', value: questionCounts?.whatIf},
         ],
         angleField: 'value',
         colorField: 'type',
@@ -70,7 +54,7 @@ const DemoPie: React.FC = () => {
         ],
     };
 
-    return (<Card title="提问类型-4MAT模式"  styles={{
+    return (<Card title="提问类型-4MAT模式" styles={{
         header: {
             fontSize: '25px',
         }

@@ -10,8 +10,8 @@ import qs from "qs";
 import {VideoPlayInfo} from "../../dtos/VideoPlayInfo.ts";
 import {TranscriptAnalysis} from "../../dtos/TranscriptAnalysis.ts";
 import DemoColumn from "../DemoColumn/demoColumn.tsx";
-import DemoPie from "../DemoPie/demoPie.tsx";
-import DemoArea from "../DemoArea/demoArea.tsx";
+import DemoPie from "../DemoPie/DemoPie.tsx";
+import DemoArea from "../DemoArea/DemoArea.tsx";
 
 const Analysis: React.FC = () => {
 
@@ -165,8 +165,8 @@ const Analysis: React.FC = () => {
                 </Row>
             </Card>
             <div style={{ display: 'flex', gap: '16px', marginTop:'100px' }}>
-                <div style={{ flex: 1 }}><DemoColumn /></div>
-                <div style={{ flex: 1 }}><DemoPie /></div>
+                <div style={{ flex: 1 }}><DemoColumn feedbackCounts={transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts} /></div>
+                <div style={{ flex: 1 }}><DemoPie questionCounts = {transcriptAnalysis?.interactionTypeCountMap?.questionCounts} /></div>
                 <div style={{ flex: 1 }}><DemoArea feedbackCounts={transcriptAnalysis?.interactionTypeCountMap?.feedbackCounts} /></div>
             </div>
         </div>
