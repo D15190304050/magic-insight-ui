@@ -43,7 +43,7 @@ const DemoPie: React.FC = ({questionCounts}: { questionCounts: QuestionCounts | 
             {
                 type: 'text',
                 style: {
-                    text: 'Question\nType',
+                    text: '提问\n类型',
                     x: '50%',
                     y: '50%',
                     textAlign: 'center',

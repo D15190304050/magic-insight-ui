@@ -67,7 +67,7 @@ const beforeUploadAvatar = (file) => {
     const fileType = file.type;
     const isJpgOrPng = fileType === "image/jpeg" || fileType === "image/png";
     if (!isJpgOrPng) {
-        message.error('You can only upload JPG/PNG file!');
+        message.error('只能上传JPG/PNG类型的图片!');
     }
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {

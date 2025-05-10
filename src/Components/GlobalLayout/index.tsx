@@ -28,17 +28,14 @@ const GlobalLayout = ({children}) => {
     const navigate: NavigateFunction = useNavigate();
 
     const userMenuItems: MenuProps['items'] = isNullOrUndefined(userInfo) ? [] : [
-        {
-            key: "1",
-            label: "View profile",
-        },
+
         {
             key: "2",
-            label: "Video uploading",
+            label: "视频管理",
         },
         {
             key: "10",
-            label: "Log out",
+            label: "退出登录",
         }
     ];
 
@@ -69,11 +66,11 @@ const GlobalLayout = ({children}) => {
             >
                 <Row>
                     <Col>
-                        <a href={"/"}>AI课堂分析系统</a>
+                        <a href={"/"} style={{ fontSize: '20px' }}>AI课堂分析系统</a>
                     </Col>
-                    <Col span={4} offset={18}>
+                    <Col span={4} offset={17}>
                         <Dropdown menu={{items: userMenuItems, onClick: onUserMenuClick}}>
-                            <a onClick={(e) => e.preventDefault()}>
+                            <a style={{ fontSize: '16px' }} onClick={(e) => e.preventDefault()}>
                                 <Space>
                                     {isNullOrUndefined(userInfo) ? "Log in" : userInfo.nickname}
                                 </Space>

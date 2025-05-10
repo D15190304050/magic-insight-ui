@@ -4,7 +4,11 @@ const Home: React.FC = () => {
 
     return (
         <div>
-            <h1>Home</h1>
+            <img src="/src/assets/home.jpeg" style={{
+                width: '100%',
+                maxWidth: '900px',
+                height: 'auto',
+            }}/>
         </div>
     );
 };
