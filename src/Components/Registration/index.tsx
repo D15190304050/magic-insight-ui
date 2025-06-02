@@ -67,7 +67,7 @@ const beforeUploadAvatar = (file) => {
     const fileType = file.type;
     const isJpgOrPng = fileType === "image/jpeg" || fileType === "image/png";
     if (!isJpgOrPng) {
-        message.error('You can only upload JPG/PNG file!');
+        message.error('只能上传JPG/PNG类型的图片!');
     }
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
@@ -176,7 +176,7 @@ const Registration = () => {
                 <div className="wrap-container-registration">
                     <div className="registration-wrap">
                         <Card
-                            title="Magic insight"
+                            title="基于语音和动作识别的AI课堂分析系统"
                             bordered={false}
                             style={{
                                 width: 500, // Card width: 500 px.
@@ -193,7 +193,7 @@ const Registration = () => {
                             >
 
                                 <Form.Item
-                                    label="Upload"
+                                    label="头像"
                                     name="avatarUrl"
                                     valuePropName="avatar"
                                     rules={[
@@ -230,7 +230,7 @@ const Registration = () => {
 
                                 <Form.Item
                                     name="username"
-                                    label="Username"
+                                    label="用户名"
                                     rules={[
                                         {
                                             required: true,
@@ -242,7 +242,7 @@ const Registration = () => {
                                                 if (!value || usernamePattern.test(value)) {
                                                     return Promise.resolve();
                                                 }
-                                                return Promise.reject(new Error("The username can only starts with an English alphabet and can only contains English alphabets, numbers, '_'. And a username should contains 5 - 32 characters."));
+                                                return Promise.reject(new Error("用户名只能以英文字母开头，且只能包含英文字母、数字、下划线，同时应该包含5-32个字符。"));
                                             },
                                         }),
                                     ]}
@@ -252,7 +252,7 @@ const Registration = () => {
 
                                 <Form.Item
                                     name="email"
-                                    label="E-mail"
+                                    label="邮箱"
                                     rules={[
                                         {
                                             type: 'email',
@@ -269,7 +269,7 @@ const Registration = () => {
 
                                 <Form.Item
                                     name="password"
-                                    label="Password"
+                                    label="密码"
                                     rules={[
                                         {
                                             required: true,
@@ -293,7 +293,7 @@ const Registration = () => {
 
                                 <Form.Item
                                     name="confirmedPassword"
-                                    label="Confirm Password"
+                                    label="确认密码"
                                     dependencies={['password']}
                                     hasFeedback
                                     rules={[
@@ -316,7 +316,7 @@ const Registration = () => {
 
                                 <Form.Item
                                     name="nickname"
-                                    label="Nickname"
+                                    label="昵称"
                                     tooltip="What do you want others to call you?"
                                     rules={[
                                         {
@@ -340,7 +340,7 @@ const Registration = () => {
 
                                 <Form.Item
                                     name="phoneNumber"
-                                    label="Phone Number"
+                                    label="电话号码"
                                     rules={[
                                         {
                                             required: true,
@@ -363,18 +363,18 @@ const Registration = () => {
 
                                 <Form.Item
                                     name="gender"
-                                    label="Gender"
+                                    label="性别"
                                     rules={[{required: true, message: 'Please select gender!'}]}
                                     initialValue="secret"
                                 >
                                     <Select placeholder="select your gender">
-                                        <Option value="male">Male</Option>
-                                        <Option value="female">Female</Option>
-                                        <Option value="secret">Secret</Option>
+                                        <Option value="male">男</Option>
+                                        <Option value="female">女</Option>
+                                        <Option value="secret">保密</Option>
                                     </Select>
                                 </Form.Item>
 
-                                <Form.Item label="Captcha" extra="We must make sure that your are a human.">
+                                <Form.Item label="验证码" extra="我们需要确保你是一个真实的人">
                                     <Row gutter={8}>
                                         <Col span={12}>
                                             <Form.Item
@@ -386,7 +386,7 @@ const Registration = () => {
                                             </Form.Item>
                                         </Col>
                                         <Col span={12}>
-                                            <Button onClick={getCaptcha}>Get captcha</Button>
+                                            <Button onClick={getCaptcha}>获取验证码</Button>
                                         </Col>
                                         <Col span={12}>
                                             <img src={captchaUrl} alt={"Captcha"}/>
@@ -406,16 +406,16 @@ const Registration = () => {
                                     {...tailFormItemLayout}
                                 >
                                     <Checkbox>
-                                        I have read the <a href="">agreement</a>
+                                        我已经阅读了 <a href="">相关协议</a>
                                     </Checkbox>
                                 </Form.Item>
                                 <Form.Item {...tailFormItemLayout}>
                                     <Space>
                                         <Button type="primary" htmlType="submit">
-                                            Register
+                                            注册
                                         </Button>
 
-                                        <Button htmlType='reset'>Reset</Button>
+                                        <Button htmlType='reset'>重置</Button>
                                     </Space>
                                 </Form.Item>
                             </Form>

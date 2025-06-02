@@ -10,8 +10,8 @@ import {useNavigate} from "react-router-dom";
 import AuthKeys from "../../constants/AuthKeys.ts";
 import RoutePaths from "../../constants/RoutePaths.ts";
 
-const ColPush: number = 6;
-const ColSpan: number = 12;
+const ColPush: number = 1;
+const ColSpan: number = 22;
 
 const { Search } = Input;
 const { Header, Content, Footer } = Layout;
@@ -28,17 +28,14 @@ const GlobalLayout = ({children}) => {
     const navigate: NavigateFunction = useNavigate();
 
     const userMenuItems: MenuProps['items'] = isNullOrUndefined(userInfo) ? [] : [
-        {
-            key: "1",
-            label: "View profile",
-        },
+
         {
             key: "2",
-            label: "Video uploading",
+            label: "视频管理",
         },
         {
             key: "10",
-            label: "Log out",
+            label: "退出登录",
         }
     ];
 
@@ -69,14 +66,11 @@ const GlobalLayout = ({children}) => {
             >
                 <Row>
                     <Col>
-                        <a href={"/"}>Magic Insight</a>
+                        <a href={"/"} style={{ fontSize: '20px' }}>AI课堂分析系统</a>
                     </Col>
-                    <Col span={18} style={{justifyContent: "center"}}>
-                        <Search placeholder="input search text" onSearch={onSearch} enterButton style={{verticalAlign: "middle", width: "60%"}}/>
-                    </Col>
-                    <Col span={4}>
+                    <Col span={4} offset={17}>
                         <Dropdown menu={{items: userMenuItems, onClick: onUserMenuClick}}>
-                            <a onClick={(e) => e.preventDefault()}>
+                            <a style={{ fontSize: '16px' }} onClick={(e) => e.preventDefault()}>
                                 <Space>
                                     {isNullOrUndefined(userInfo) ? "Log in" : userInfo.nickname}
                                 </Space>

@@ -8,8 +8,7 @@ import type {Location} from "@remix-run/router";
 import {getLoginStateFromCookie} from "../../apis/login/LoginStateHandler.ts";
 import {Dispatch} from "redux";
 
-const Authenticated = ({ children }) =>
-{
+const Authenticated = ({children}) => {
     const location: Location = useLocation();
     const navigate: NavigateFunction = useNavigate();
     const dispatch: Dispatch = useDispatch();
@@ -20,8 +19,7 @@ const Authenticated = ({ children }) =>
 
     useEffect(() => {
         (
-            async () =>
-            {
+            async () => {
                 // Do nothing if the user has logged in.
                 if (hasLoggedIn)
                     return;
@@ -46,3 +44,10 @@ const Authenticated = ({ children }) =>
 }
 
 export default Authenticated;
+
+/*
+    组件的主要功能是：
+    1、检查用户是否已登录（通过 Redux 中的 userInfo 状态）
+    2、如果未登录，尝试从 cookie/localStorage 恢复登录状态
+    3、如果恢复失败，重定向到登录页面并携带当前路径作为重定向参数
+ */

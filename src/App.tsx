@@ -6,10 +6,11 @@ import RoutePaths from "./constants/RoutePaths.ts";
 import VideoManagement from "./Components/VideoManagement";
 import VideoUploading from "./Components/VideoUploading";
 import VideoUpdate from "./Components/VideoUpdate";
-import VideoPlayer from "./Components/VideoPlayer";
+// import VideoPlayer from "./Components/VideoPlayer";
 import VideoPlayPage from "./Components/VideoPlayPage";
-import PlaylistPage from "./Components/PlaylistPage";
-import FollowingAndFollowerPage from "./Components/FollowingAndFollowerPage";
+// import PlaylistPage from "./Components/PlaylistPage";
+// import FollowingAndFollowerPage from "./Components/FollowingAndFollowerPage";
+import Analysis from "./Components/Analysis/analysis.tsx";
 
 function App()
 {
@@ -21,6 +22,8 @@ function App()
                 <Route path={RoutePaths.VideoUploading} element={<VideoUploading/>}/>
                 <Route path={RoutePaths.VideoUpdate} element={<VideoUpdate/>}/>
                 <Route path={RoutePaths.VideoPlayPage} element={<VideoPlayPage/>}/>
+
+                <Route path={RoutePaths.Analysis} element={<Analysis/>}/>
             </Routes>
         </GlobalLayout>
     );

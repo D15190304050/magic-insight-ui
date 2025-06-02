@@ -1,11 +1,16 @@
+import React from 'react';
 
-const Home = () =>
-{
+const Home: React.FC = () => {
+
     return (
-        <div id="mindMapContainer">
-            <h1>Home</h1>
+        <div>
+            <img src="/src/assets/homebg.jfif" style={{
+                width: '100%',
+                maxWidth: '900px',
+                height: 'auto',
+            }}/>
         </div>
     );
-}
+};
 
 export default Home;
